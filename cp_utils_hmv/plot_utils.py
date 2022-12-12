@@ -4,7 +4,6 @@
 import os
 import random
 
-import generic_functions as gf
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -12,6 +11,8 @@ import seaborn as sns
 import SimpleITK as sitk
 from matplotlib import cm
 from PIL import Image, ImageDraw, ImageFont
+
+from cp_utils_hmv import generic_functions as gf
 
 
 def see_object(obj_number, df, segmented_image, original_image, crop_value):
