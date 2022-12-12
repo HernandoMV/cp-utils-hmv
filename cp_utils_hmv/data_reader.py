@@ -59,7 +59,8 @@ def RabiesCP_data_reader(CPpath):
         "Object relationships.csv" in filenamesCSV
     ), "Could not find file {0}".format("Object relationships.csv")
     ObjectsRel = pd.read_csv(open(CPpath + "Object relationships.csv"))
-    # check if IPO... files are there and get which values of percentile where used
+    # check if IPO... files are there and get
+    # which values of percentile where used
     assert any(
         item.startswith("IPO_") for item in filenamesCSV
     ), "Could not find IPO_* files"
@@ -169,7 +170,8 @@ def D1D2_data_reader(CPpath):
     )
     image_data = pd.read_csv(open(CPpath + id_filename))
 
-    # parse the data in the title of the images to get info about the experiment in the df format
+    # parse the data in the title of the images to
+    # get info about the experiment in the df format
     df_parsed = image_data.apply(
         parse_image_info, col_name="FileName_Channel1", axis=1
     )
@@ -257,7 +259,8 @@ def PH3_data_reader(CPpath):
     )
     image_data = pd.read_csv(open(CPpath + id_filename))
 
-    # parse the data in the title of the images to get info about the experiment in the df format
+    # parse the data in the title of the images to get
+    # info about the experiment in the df format
     df_parsed = image_data.apply(
         parse_image_info, col_name="FileName_Channel1", axis=1
     )
@@ -331,8 +334,11 @@ def PH3_data_reader(CPpath):
 def parse_image_info(df, col_name):
     # add columns to the dataset with information about the experiment
     # The format expected looks like this:
-    # CONT01_control_slide-14_slice-1_manualROI-L-TailPosterior_squareROI-1_channel-1.tif
-    # or CONT01_control_slide-14_slice-1_manualROI-Caudoputamen_squareROI-1_channel-1.tif
+    # CONT01_control_slide-14_slice-1_
+    # manualROI-L-TailPosterior_squareROI-1_channel-1.tif
+    # or CONT01_control_slide-14_slice-1_
+    # manualROI-Caudoputamen_squareROI-1_channel-1.tif
+
     name_pieces = df[col_name].split("_")
     df["AnimalID"] = name_pieces[0]
     df["ExperimentalCondition"] = name_pieces[1]
@@ -382,7 +388,8 @@ def getImageInfo(df, ImageDataFrame):
     df["BrainSide"] = ImNamePieces[4]
     df["InjectionArea"] = "TODO"  # TODO
 
-    # get information regarding global image metrics and calculate relative values
+    # get information regarding global image metrics and
+    # calculate relative values
     # Image_cFos_Mean = np.float(
     # ImageDataFrame[ImageDataFrame['ImageNumber']==df['ImageNumber']]['Intensity_MeanIntensity_cfos'])
     # Cell_cFos_Mean = np.float(df['Intensity_MeanIntensity_cfos'])

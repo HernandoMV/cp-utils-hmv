@@ -6,7 +6,8 @@ from PIL import Image
 
 def get_indexes_by_thr(df, sc, thresholds, n):
     """
-    find random indexes belonging to certain thresholds for a column in a dataframe
+    find random indexes belonging to certain thresholds
+    for a column in a dataframe
     param df is a dataframe
     param sc is the name of a column in the dataframe
     param thresholds is a tuple of tuples e.g: ((0, .1), (.2, .3), ...)
@@ -68,7 +69,8 @@ def make_core_name_from_series(series_data):
 def make_image_name_from_series(series_data, channel):
     """
     series_data is a panda series with specific columns
-    outputs: PH301_A2A-Ai14_slide-1_slice-0_manualROI-L-Tail_squareROI-1_channel-1
+    outputs:
+    PH301_A2A-Ai14_slide-1_slice-0_manualROI-L-Tail_squareROI-1_channel-1
     """
 
     assert isinstance(series_data, pd.Series), "Data not pandas series"
@@ -217,7 +219,8 @@ def get_prereg_coordinates(series_data, data_path, reg_im_res=0):
     """
     series_data is a panda data series with specific columns
     datapath is the path to the images
-    reg_im_res is the resolution, in microns, of the image used for registration
+    reg_im_res is the resolution, in microns,
+    of the image used for registration
     outputs: general coordinates of cell in downsampled image
     """
     assert isinstance(series_data, pd.Series), "Data not pandas series"
@@ -246,47 +249,6 @@ def get_prereg_coordinates(series_data, data_path, reg_im_res=0):
     lr_y = int(hr_y * coords_res / reg_im_res)
 
     return lr_x, lr_y
-
-
-def create_dataframe_from_roi_file(filepath):
-    """
-    creates a dataframe with information of rois
-    """
-    # initialize list to hold the data
-    rois_list = []
-    # read from the file and populate the dictionary
-    linecounter = 0
-    with open(filepath) as f:
-        for line in f:
-            line = line.strip()
-            parts = line.split(", ")
-            # read column names from first line
-            if linecounter == 0:
-                columns = parts
-            else:  # append to the list
-                rois_list.append(parts)
-            linecounter += 1
-
-    # create the dataframe
-    rois_df = pd.DataFrame(data=rois_list, columns=columns)
-
-    return rois_df
-
-
-def get_manual_rois_file_path(series_data, data_path):
-    """
-    generates the path to the file with the rois information
-    """
-    rois_file_path = "ROIs/000_ManualROIs_info/"
-    manual_roi_path = os.path.join(
-        data_path,
-        series_data.AnimalID,
-        rois_file_path,
-        make_core_name_from_series(series_data),
-    )
-    manual_roi_path = "_".join([manual_roi_path, "roi_positions.txt"])
-
-    return manual_roi_path
 
 
 def get_resolution_from_folder_name(reg_sl_folder):

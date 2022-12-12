@@ -373,7 +373,6 @@ def plot_channel_of_indexes(fig, axs, indexes, df, channel, window, lut):
 
 def draw_ellipse(image, bounds, width=1, outline="white", antialias=4):
     """Improved ellipse drawing function, based on PIL.ImageDraw."""
-    # from https://stackoverflow.com/questions/32504246/draw-ellipse-in-python-pil-with-line-thickness
 
     # Use a single channel image (mode='L') as mask.
     # The size of the mask can be increased relative to the imput image
@@ -409,8 +408,8 @@ def inspect_cells_in_ROI(
     plot_cellprofiler=True,
 ):
     """
-    circles the cells in the dataset in the selected channels. It also shows the summary
-    image of the cell profiler
+    circles the cells in the dataset in the selected channels.
+    It also shows the summary image of the cell profiler
 
     param df: dataframe. Needs data path as attributes
     param indexes_to_plot: set of indexes to plot from
@@ -598,7 +597,8 @@ def get_concat_image_from_rois(
     manual_roi_path = gf.get_manual_rois_file_path(df.iloc[0], data_path)
     rois_df = gf.create_dataframe_from_roi_file(manual_roi_path)
 
-    # find the width and height (CURRENTLY THEY HAVE TO BE THE SAME (L)) of the rois
+    # find the width and height (CURRENTLY THEY HAVE TO BE THE SAME (L)
+    # of the rois
     # if there is only one roi get it from the image
 
     # otherwise calculate them based on positions
@@ -645,7 +645,7 @@ def get_concat_image_from_rois(
 
 def show_atlas_image(ax, section, dimming=1, cropping=None):
     # # laptop:
-    # ARA_file = "/C:/Users/herny/Desktop/SWC/Data/Anatomy/ARA_25_micron_mhd/template.mhd"
+    # ARA_file = "/C:/.../SWC/Data/Anatomy/ARA_25_micron_mhd/template.mhd"
     # nailgun:
     ARA_file = "/home/hernandom/data/Anatomy/ARA_25_micron_mhd/template.mhd"
 
