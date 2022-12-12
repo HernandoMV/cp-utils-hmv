@@ -22,11 +22,10 @@ classifiers = [
 dependencies = [
   "numpy",
   "pandas",
-  "PIL",
+  "Pillow",
   "matplotlib",
   "SimpleITK",
   "seaborn",
-  "glob",
 ]
 
 [project.urls]
