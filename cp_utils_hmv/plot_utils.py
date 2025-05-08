@@ -95,7 +95,7 @@ def plotRabiesCell(seriesData, mainPath, window=30, lut="plasma"):
     new_im.paste(ProcessedImage, (window * 4, 0))
 
     # resize
-    new_im = new_im.resize((300, 100), Image.ANTIALIAS)
+    new_im = new_im.resize((300, 100), Image.LANCZOS)
 
     # return
     return new_im
@@ -156,11 +156,10 @@ def plotPH3Cell(seriesData, datapath, window=30, lut="plasma"):
     new_im.paste(c4_image, (window * 6, 0))
 
     # resize
-    new_im = new_im.resize((400, 100), Image.ANTIALIAS)
+    new_im = new_im.resize((400, 100), Image.LANCZOS)
 
     # return
     return new_im
-
 
 def plotPH3Channel(seriesData, datapath, channel=1, window=30, lut="plasma"):
     # plots a single channel
@@ -184,7 +183,7 @@ def plotPH3Channel(seriesData, datapath, channel=1, window=30, lut="plasma"):
     c_image = ChangeLUT(c_image, lut)
 
     # resize
-    c_image = c_image.resize((100, 100), Image.ANTIALIAS)
+    c_image = c_image.resize((100, 100), Image.LANCZOS)
 
     # return
     return c_image
@@ -469,7 +468,7 @@ def inspect_cells_in_ROI(
         concat_im = get_cp_image(df_cir)
         # resize
         new_size = tuple([int(x / binning) for x in concat_im.size])
-        concat_im = concat_im.resize(new_size, Image.ANTIALIAS)
+        concat_im = concat_im.resize(new_size, Image.LANCZOS)
         # draw circles
         for col, cir_coord in enumerate(cir_coord_list):
             draw_ellipse(
@@ -491,7 +490,7 @@ def inspect_cells_in_ROI(
         im = im.convert("RGB")
         # resize
         new_size = tuple([int(x / binning) for x in im.size])
-        im = im.resize(new_size, Image.ANTIALIAS)
+        im = im.resize(new_size, Image.LANCZOS)
         im_list.append(im)
         # draw circles
         for col, cir_coord in enumerate(cir_coord_list):
